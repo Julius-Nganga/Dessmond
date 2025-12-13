@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Desmond Hinga Photography</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables - Matching Photography Portfolio */
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #ffffff;
+            --accent-color: #FF6B35;
+            --accent-gradient: linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%);
+            --dark-accent: #1a1a1a;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #495057;
+            --text-dark: #212529;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-slow: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--secondary-color);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Enhanced Button Styles - Matching Portfolio */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: var(--accent-gradient);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            box-shadow: none;
+        }
+
+        .btn-outline::before {
+            background: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            color: var(--secondary-color);
+            border-color: transparent;
+        }
+
+        /* Enhanced Header & Navigation - Matching Portfolio */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            color: var(--primary-color);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            padding: 5px 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled .navbar {
+            padding: 10px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            position: relative;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 35px;
+            position: relative;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--accent-color);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .admin-btn {
+            margin-left: 25px;
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            border-radius: 50px;
+        }
+
+        .admin-btn:hover {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Enhanced Blog Hero */
+        .blog-hero {
+            height: 70vh;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 100%), url('https://source.unsplash.com/random/1920x1080/?photography,blog') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--secondary-color);
+            margin-top: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="1" stroke="%23FF6B35" stroke-opacity="0.1"/></svg>');
+            background-size: 50px 50px;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-50px, -50px); }
+        }
+
+        .blog-hero-content {
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .blog-hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .blog-hero-content p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+
+        /* Enhanced Blog Posts Section */
+        .blog-section {
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--medium-gray) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        /* Enhanced Blog Filters */
+        .blog-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .filter-btn {
+            padding: 12px 25px;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gradient);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            color: var(--secondary-color);
+            border-color: transparent;
+        }
+
+        .filter-btn.active::before, .filter-btn:hover::before {
+            left: 0;
+        }
+
+        /* Enhanced Blog Posts Grid */
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .blog-post {
+            background-color: var(--secondary-color);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition-slow);
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+            position: relative;
+        }
+
+        .blog-post.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .blog-post:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .post-image {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+            filter: grayscale(100%) brightness(0.8);
+        }
+
+        .blog-post:hover .post-image img {
+            transform: scale(1.1);
+            filter: grayscale(0%) brightness(1);
+        }
+
+        .post-date {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--accent-gradient);
+            color: var(--secondary-color);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+            z-index: 2;
+        }
+
+        .post-content {
+            padding: 30px;
+        }
+
+        .post-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            line-height: 1.4;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .blog-post:hover .post-content h3 {
+            color: var(--accent-color);
+        }
+
+        .post-content p {
+            color: var(--dark-gray);
+            margin-bottom: 25px;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 2px solid var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        .post-category {
+            background: var(--accent-gradient);
+            color: var(--secondary-color);
+            padding: 8px 16px;
+            border-radius: 50px;
+            text-transform: capitalize;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .post-tags {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        /* Enhanced Loading State */
+        .loading {
+            text-align: center;
+            padding: 60px;
+            grid-column: 1 / -1;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1.5s linear infinite;
+            margin: 0 auto 25px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading p {
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .no-posts {
+            text-align: center;
+            padding: 60px;
+            color: var(--dark-gray);
+            grid-column: 1 / -1;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .no-posts.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .no-posts h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .no-posts p {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+        }
+
+        /* Enhanced Load More Button */
+        .load-more {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        /* Enhanced Footer - Matching Portfolio */
+        footer {
+            background: linear-gradient(135deg, var(--dark-accent) 0%, #000000 100%);
+            color: var(--secondary-color);
+            padding: 80px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-gradient);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+
+        .footer-col {
+            flex: 1;
+            margin-right: 40px;
+        }
+
+        .footer-col:last-child {
+            margin-right: 0;
+        }
+
+        .footer-col h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: var(--transition);
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .footer-col ul li a::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+            padding-left: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gradient);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        .social-links a:hover::before {
+            left: 0;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Enhanced Login Modal */
+        .login-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 1200;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .login-container.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .login-form {
+            background: var(--secondary-color);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 450px;
+            transform: translateY(-60px) scale(0.9);
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+        }
+
+        .login-container.active .login-form {
+            transform: translateY(0) scale(1);
+        }
+
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--light-gray);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .login-form .btn {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .close-login {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            color: var(--dark-gray);
+            font-size: 35px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-login:hover {
+            color: var(--accent-color);
+            background: var(--light-gray);
+            transform: rotate(90deg);
+        }
+
+        /* Floating Elements Animation */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: floatElement 20s infinite linear;
+        }
+
+        @keyframes floatElement {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(100px, 100px) rotate(360deg); }
+        }
+
+        /* Mobile Responsive Design */
+        @media (max-width: 1200px) {
+            .blog-posts {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+            
+            .blog-hero-content h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .blog-posts {
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 30px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .footer-col {
+                margin-right: 0;
+                margin-bottom: 40px;
+            }
+
+            .blog-hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 0;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--secondary-color);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transition: var(--transition);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(10px);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 20px 0;
+            }
+            
+            .admin-btn {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .blog-hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .blog-hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .blog-posts {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .blog-filters {
+                gap: 10px;
+            }
+
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .blog-hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .blog-hero-content p {
+                font-size: 1rem;
+            }
+            
+            .blog-section {
+                padding: 80px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.85rem;
+            }
+            
+            .blog-posts {
+                grid-template-columns: 1fr;
+            }
+            
+            .login-form {
+                padding: 30px 25px;
+            }
+
+            .post-content {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Background Elements -->
+    <div class="floating-elements">
+        <div class="floating-element" style="width: 100px; height: 100px; top: 10%; left: 5%; animation-delay: 0s;"></div>
+        <div class="floating-element" style="width: 150px; height: 150px; top: 60%; left: 80%; animation-delay: -5s;"></div>
+        <div class="floating-element" style="width: 80px; height: 80px; top: 80%; left: 10%; animation-delay: -10s;"></div>
+        <div class="floating-element" style="width: 120px; height: 120px; top: 30%; left: 90%; animation-delay: -15s;"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">DESMOND HINGA</a>
+                <ul class="nav-links">
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#gallery">Gallery</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="#" class="btn admin-btn" id="adminLoginBtn">Admin</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+        <div class="container">
+            <div class="blog-hero-content">
+                <h1>Photo Blog</h1>
+                <p>Stories behind the lens - Capturing moments and sharing the narratives that shape our visual journey through life's most beautiful scenes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Posts Section -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Recent Posts</h2>
+            </div>
+
+            <!-- Blog Filters -->
+            <div class="blog-filters">
+                <button class="filter-btn active" data-category="all">All Posts</button>
+                <button class="filter-btn" data-category="portrait">Portraits</button>
+                <button class="filter-btn" data-category="landscape">Landscapes</button>
+                <button class="filter-btn" data-category="street">Street</button>
+                <button class="filter-btn" data-category="abstract">Abstract</button>
+                <button class="filter-btn" data-category="urban">Urban</button>
+                <button class="filter-btn" data-category="architecture">Architecture</button>
+            </div>
+
+            <!-- Loading State -->
+            <div class="loading" id="loadingState">
+                <div class="spinner"></div>
+                <p>Loading inspiring stories...</p>
+            </div>
+
+            <!-- Blog Posts Container -->
+            <div class="blog-posts" id="blogPosts">
+                <!-- Blog posts will be loaded here by JavaScript -->
+            </div>
+
+            <!-- No Posts Message -->
+            <div class="no-posts" id="noPosts">
+                <h3>No stories found</h3>
+                <p>Check back later for new inspiring posts!</p>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more">
+                <button class="btn" id="loadMoreBtn" style="display: none;">
+                    <i class="fas fa-plus"></i> Load More Stories
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Desmond Hinga</h3>
+                    <p>Specializing in black and white photography that captures the essence of moments, emotions, and stories. Creating visual poetry through the lens.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html#home">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#gallery">Gallery</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Desmond Hinga. All Rights Reserved. | Crafted with passion</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="login-container" id="loginContainer">
+        <span class="close-login">&times;</span>
+        <div class="login-form">
+            <h2>Admin Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn">Login <i class="fas fa-sign-in-alt"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const API_BASE = '/api';
+            let currentPage = 1;
+            let currentCategory = 'all';
+            let isLoading = false;
+            let hasMore = true;
+
+            // Mobile Navigation Toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                hamburger.innerHTML = navLinks.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Load initial blog posts
+            loadBlogPosts();
+
+            // Filter functionality
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    document.querySelectorAll('.filter-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
+
+                    // Reset and load new category
+                    currentCategory = this.getAttribute('data-category');
+                    currentPage = 1;
+                    hasMore = true;
+                    document.getElementById('blogPosts').innerHTML = '';
+                    document.getElementById('loadMoreBtn').style.display = 'none';
+                    document.getElementById('noPosts').classList.remove('visible');
+                    
+                    loadBlogPosts();
+                });
+            });
+
+            // Load more functionality
+            document.getElementById('loadMoreBtn').addEventListener('click', function() {
+                if (!isLoading && hasMore) {
+                    currentPage++;
+                    loadBlogPosts(true);
+                }
+            });
+
+            async function loadBlogPosts(append = false) {
+                if (isLoading) return;
+                
+                isLoading = true;
+                
+                if (!append) {
+                    document.getElementById('loadingState').style.display = 'block';
+                    document.getElementById('noPosts').classList.remove('visible');
+                }
+
+                try {
+                    let url = `${API_BASE}/photos?page=${currentPage}&limit=6`;
+                    if (currentCategory !== 'all') {
+                        url += `&category=${currentCategory}`;
+                    }
+
+                    const response = await fetch(url);
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    
+                    if (data.photos && data.photos.length > 0) {
+                        displayBlogPosts(data.photos, append);
+                        
+                        // Show/hide load more button
+                        if (data.photos.length < 6 || currentPage >= data.totalPages) {
+                            hasMore = false;
+                            document.getElementById('loadMoreBtn').style.display = 'none';
+                        } else {
+                            document.getElementById('loadMoreBtn').style.display = 'block';
+                        }
+                        
+                        document.getElementById('noPosts').classList.remove('visible');
+                    } else {
+                        if (!append) {
+                            document.getElementById('noPosts').classList.add('visible');
+                            document.getElementById('blogPosts').innerHTML = '';
+                        }
+                        document.getElementById('loadMoreBtn').style.display = 'none';
+                        hasMore = false;
+                    }
+                } catch (error) {
+                    console.error('Error loading blog posts:', error);
+                    if (!append) {
+                        document.getElementById('noPosts').classList.add('visible');
+                        document.getElementById('noPosts').innerHTML = `
+                            <h3>Error loading stories</h3>
+                            <p>Please try refreshing the page.</p>
+                        `;
+                    }
+                } finally {
+                    isLoading = false;
+                    document.getElementById('loadingState').style.display = 'none';
+                }
+            }
+
+            function displayBlogPosts(photos, append = false) {
+                const blogPostsContainer = document.getElementById('blogPosts');
+                
+                if (!append) {
+                    blogPostsContainer.innerHTML = '';
+                }
+
+                photos.forEach((photo, index) => {
+                    const blogPost = document.createElement('div');
+                    blogPost.className = 'blog-post';
+                    
+                    const postDate = new Date(photo.createdAt);
+                    const formattedDate = postDate.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    
+                    blogPost.innerHTML = `
+                        <div class="post-image">
+                            <img src="${photo.imageUrl}" alt="${photo.title}" loading="lazy">
+                            <div class="post-date">${formattedDate}</div>
+                        </div>
+                        <div class="post-content">
+                            <h3>${photo.title}</h3>
+                            <p>${photo.description}</p>
+                            <div class="post-meta">
+                                <span class="post-category">${photo.category}</span>
+                                <span class="post-tags">${photo.tags && photo.tags.length > 0 ? photo.tags.slice(0, 2).join(', ') : 'Photography'}</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    blogPostsContainer.appendChild(blogPost);
+                    
+                    // Add animation with delay
+                    setTimeout(() => {
+                        blogPost.classList.add('visible');
+                    }, index * 100);
+                });
+
+                // Animate posts on scroll
+                animateBlogPosts();
+            }
+
+            // Animation on scroll function for blog posts
+            function animateBlogPosts() {
+                const blogPosts = document.querySelectorAll('.blog-post');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                entry.target.classList.add('visible');
+                            }, 100);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                blogPosts.forEach(post => {
+                    if (!post.classList.contains('visible')) {
+                        observer.observe(post);
+                    }
+                });
+            }
+
+            // Login functionality
+            const adminLoginBtn = document.getElementById('adminLoginBtn');
+            const loginContainer = document.getElementById('loginContainer');
+            const closeLogin = document.querySelector('.close-login');
+            const loginForm = document.getElementById('loginForm');
+            
+            adminLoginBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginContainer.classList.add('active');
+            });
+            
+            closeLogin.addEventListener('click', function() {
+                loginContainer.classList.remove('active');
+            });
+            
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const username = this.querySelector('input[type="text"]').value;
+                const password = this.querySelector('input[type="password"]').value;
+
+                try {
+                    const response = await fetch(`${API_BASE}/auth/login`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ username, password })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.token) {
+                        localStorage.setItem('adminToken', data.token);
+                        window.location.href = '/admin';
+                    } else {
+                        alert('Login failed: ' + (data.message || 'Invalid credentials'));
+                    }
+                } catch (error) {
+                    alert('Login error: ' + error.message);
+                }
+            });
+
+            // Initial animation for no posts message
+            const noPosts = document.getElementById('noPosts');
+            if (noPosts.classList.contains('visible')) {
+                setTimeout(() => {
+                    noPosts.classList.add('visible');
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>
